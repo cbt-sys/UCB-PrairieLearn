@@ -230,6 +230,8 @@ module.exports.initExpress = function() {
     app.use('/pl/shibcallback', require('./pages/authCallbackShib/authCallbackShib'));
     app.use('/pl/azure_login', require('./pages/authLoginAzure/authLoginAzure'));
     app.use('/pl/azure_callback', require('./pages/authCallbackAzure/authCallbackAzure'));
+    app.use('/pl/github2_login', require('./pages/authLoginGithub2/authLoginGithub2'));
+    app.use('/pl/github2_callback', require('./pages/authCallbackGithub2/authCallbackGithub2'));
     app.use('/pl/lti', require('./pages/authCallbackLti/authCallbackLti'));
     app.use('/pl/login', require('./pages/authLogin/authLogin'));
     // disable SEB until we can fix the mcrypt issues

@@ -78,6 +78,7 @@
         "parse5": "^6.0.1",
         "passport": "^0.4.1",
         "passport-azure-ad": "^4.2.1",
+        "passport-github2": "^0.1.12",
         "pg": "^8.3.3",
         "plist": "^3.0.0",
         "popper.js": "^1.16.1",

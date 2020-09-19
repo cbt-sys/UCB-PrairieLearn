@@ -99,6 +99,12 @@
               <span class="font-weight-bold">Sign in with Microsoft</span>
             </a>
           <% } %>
+          <% if (config.hasGithub2) { %>
+            <a class="btn btn-primary w-100 position-relative" href="/pl/github2_login" role="button">
+              <img src="/images/github_logo.svg" class="social-icon"/>
+              <span class="font-weight-bold">Sign in with GitHub
+            </a>
+          <% } %>
         </div>
       </div>
     </div>

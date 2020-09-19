@@ -157,7 +157,11 @@
             "type": "boolean"
         },
         "hasOauth": {
-            "description": "Enables OAuth authentication",
+            "description": "Enables OAuth/Google authentication (need googleClientId, googleClientSecret, googleRedirectUrl)",
+            "type": "boolean"
+        },
+        "hasGithub2": {
+            "description": "Enables GitHub2 authentication (need github2ClientId, github2ClientSecret, github2RedirectUrl)",
             "type": "boolean"
         },
         "useWorkers": {
