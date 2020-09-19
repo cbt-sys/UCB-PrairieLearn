@@ -100,10 +100,10 @@
             <% } else { %>
               <div class="col-md-3 col-sm-6">
                 <% include('../partials/pointsFormatter'); %>
-                Total points: <%= getStringFromFloat(assessment_instance.points) %>/<%= getStringFromFloat(assessment_instance.max_points) %>
+                Total points: <strong>Scores Hidden</strong>
               </div>
               <div class="col-md-3 col-sm-6">
-                <%- include('../partials/scorebar', {score: assessment_instance.score_perc}) %>
+                <%- include('../partials/scorebar', {score: null}) %>
               </div>
               <div class="col-md-6 col-sm-12">
                   <% if (assessment_instance.open) { %>
