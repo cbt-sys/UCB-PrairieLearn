@@ -74,7 +74,7 @@
                 <a href="<%= urlPrefix %><%= row.link %>" class="btn btn-primary btn-sm" role="button">New instance</a>
                 <% } else { // multiple_instance_header %>
                 <% if (row.assessment_instance_id) { %>
-                <%- include('../partials/scorebar', {score: row.assessment_instance_score_perc}) %>
+                <%- include('../partials/scorebar', {score: null}) %>
                 <% } else { %>
                 Not started
                 <% } %>
