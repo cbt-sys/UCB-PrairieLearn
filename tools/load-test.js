@@ -46,6 +46,11 @@ const argv = yargs
           default: 'v3',
           choices: ['v2', 'v3'],
       })
+      .option('debug', {
+          alias: 'D',
+          describe: 'Extra debug output',
+          type: 'boolean',
+      })
       .example('node tools/load-test.js -s http://localhost:3000')
       .example('node tools/load-test.js -n 10 -c 1 3 5 -s https://pl-dev.engr.illinois.edu -f ~/git/ansible-pl/prairielearn/config_pl-dev.json')
       .example('node tools/load-test.js -n 10 -c 1 3 5 -s https://prairielearn.engr.illinois.edu -f ~/git/ansible-pl/prairielearn/config_prairielearn.json')
@@ -59,6 +64,7 @@ const argv = yargs
 config.loadConfig(argv.config);
 
 const exampleCourseName = 'XC 101: Example Course, Spring 2015';
+
 let questionTitle;
 if (argv.type == 'v2') {
     questionTitle = 'Addition of vectors in Cartesian coordinates';
@@ -139,6 +145,7 @@ async function sleep(sec) {
 }
 
 async function getCourseInstanceUrl() {
+    if (argv.debug) console.log('BASEURL: ', baseUrl, 'COOKIES: ', cookies);
     const body = await request({uri: baseUrl, jar: cookies});
     const $ = cheerio.load(body);
     const elemList = $(`td a:contains("${exampleCourseName}")`);
@@ -147,7 +154,8 @@ async function getCourseInstanceUrl() {
 }
 
 async function getQuestionUrl(courseInstanceUrl) {
-    const questionsUrl = courseInstanceUrl + '/instructor/questions';
+    const questionsUrl = courseInstanceUrl + '/instructor/course_admin/questions';
+    if (argv.debug) console.log('QUESTIONSURL: ', questionsUrl);
     const body = await request({uri: questionsUrl, jar: cookies});
     const $ = cheerio.load(body);
     const elemList = $(`td a:contains("${questionTitle}")`);
@@ -155,7 +163,9 @@ async function getQuestionUrl(courseInstanceUrl) {
     return serverUrl + elemList[0].attribs.href;
 }
 
-async function getQuestionSubmitInfo(questionUrl) {
+async function getQuestionSubmitInfo(questionBaseUrl) {
+    const questionUrl = questionBaseUrl + 'preview';
+    if (argv.debug) console.log('QUESTIONURL: ', questionUrl);
     const body = await request({uri: questionUrl, jar: cookies});
     const $ = cheerio.load(body);
 
