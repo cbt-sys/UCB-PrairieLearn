@@ -43,18 +43,28 @@ module.exports = function(req, res, next) {
         ];
         sqldb.call('users_select_or_insert', params, (err, result) => {
             if (ERR(err, next)) return;
-            res.locals.authn_user = result.rows[0].user;
-            res.locals.authn_institution = result.rows[0].institution;
-            res.locals.authn_provider_name = 'LoadTest';
-            res.locals.is_administrator = result.rows[0].is_administrator;
 
             let params = {
-                uid: 'loadtest@prairielearn.org',
-                course_short_name: 'XC 101',
+                user_id: result.rows[0].user_id,
             };
-            sqldb.query(sql.enroll_user_as_instructor, params, (err, _result) => {
+            sqldb.query(sql.select_user, params, (err, result) => {
                 if (ERR(err, next)) return;
-                next();
+                if (result.rowCount == 0) return next(new Error('user not found with user_id ' + params.user_id));
+
+                res.locals.authn_user = result.rows[0].user;
+                res.locals.authn_institution = result.rows[0].institution;
+                res.locals.authn_provider_name = 'LoadTest';
+                res.locals.is_administrator = false;
+                res.locals.news_item_notification_count = result.rows[0].news_item_notification_count;
+
+                let params = {
+                    uid: 'loadtest@prairielearn.org',
+                    course_short_name: 'XC 101',
+                };
+                sqldb.query(sql.enroll_user_as_instructor, params, (err, _result) => {
+                    if (ERR(err, next)) return;
+                    next();
+                });
             });
         });
         return;
@@ -84,7 +94,7 @@ module.exports = function(req, res, next) {
             };
             sqldb.query(sql.select_user, params, (err, result) => {
                 if (ERR(err, next)) return;
-                if (result.rowCount == 0) return next(new Error('user not found with user_id ' + authnData.user_id));
+                if (result.rowCount == 0) return next(new Error('user not found with user_id ' + params.user_id));
                 res.locals.authn_user = result.rows[0].user;
                 res.locals.authn_institution = result.rows[0].institution;
                 res.locals.authn_provider_name = 'Local';
