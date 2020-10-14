@@ -53,7 +53,7 @@
                 <% if(!row.show_closed_assessment_score) { %>
                 Score not shown
                 <% } else { %>
-                <%- include('../partials/scorebar', {score: row.assessment_instance_score_perc}) %>
+                <%- include('../partials/scorebar', {score: null}) %>
                 <% } %>
                 <% } %>
               </td>

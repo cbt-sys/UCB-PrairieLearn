@@ -1,0 +1,43 @@
+diff --git a/pages/studentAssessmentInstanceExam/studentAssessmentInstanceExam.ejs b/pages/studentAssessmentInstanceExam/studentAssessmentInstanceExam.ejs
+index b3435005c..9ff35c355 100644
+--- a/pages/studentAssessmentInstanceExam/studentAssessmentInstanceExam.ejs
++++ b/pages/studentAssessmentInstanceExam/studentAssessmentInstanceExam.ejs
+@@ -100,10 +100,10 @@
+             <% } else { %>
+               <div class="col-md-3 col-sm-6">
+                 <% include('../partials/pointsFormatter'); %>
+-                Total points: <%= getStringFromFloat(assessment_instance.points) %>/<%= getStringFromFloat(assessment_instance.max_points) %>
++                Total points: <strong>Scores Hidden</strong>
+               </div>
+               <div class="col-md-3 col-sm-6">
+-                <%- include('../partials/scorebar', {score: assessment_instance.score_perc}) %>
++                <%- include('../partials/scorebar', {score: null}) %>
+               </div>
+               <div class="col-md-6 col-sm-12">
+                   <% if (assessment_instance.open) { %>
+diff --git a/pages/studentAssessments/studentAssessments.ejs b/pages/studentAssessments/studentAssessments.ejs
+index e30b26d34..7a7c43c3c 100644
+--- a/pages/studentAssessments/studentAssessments.ejs
++++ b/pages/studentAssessments/studentAssessments.ejs
+@@ -75,7 +75,7 @@
+                 <% } else { // multiple_instance_header %>
+                 <% if (row.assessment_instance_id) { %>
+                 <% if(row.show_closed_assessment_score) { %>
+-                <%- include('../partials/scorebar', {score: row.assessment_instance_score_perc}) %>
++                <%- include('../partials/scorebar', {score: null}) %>
+                 <% } else { %>
+                 Score not shown
+                 <% } %>
+diff --git a/pages/studentGradebook/studentGradebook.ejs b/pages/studentGradebook/studentGradebook.ejs
+index 0645caf73..4efb247b4 100644
+--- a/pages/studentGradebook/studentGradebook.ejs
++++ b/pages/studentGradebook/studentGradebook.ejs
+@@ -53,7 +53,7 @@
+                 <% if(!row.show_closed_assessment_score) { %>
+                 Score not shown
+                 <% } else { %>
+-                <%- include('../partials/scorebar', {score: row.assessment_instance_score_perc}) %>
++                <%- include('../partials/scorebar', {score: null}) %>
+                 <% } %>
+                 <% } %>
+               </td>

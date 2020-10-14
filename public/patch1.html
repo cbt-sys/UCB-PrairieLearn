@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- This file was created with the aha Ansi HTML Adapter. https://github.com/theZiz/aha -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xml+xhtml; charset=UTF-8"/>
+<title>stdin</title>
+</head>
+<body>
+<pre>
+<span style="font-weight:bold;">diff --git a/pages/studentAssessmentInstanceExam/studentAssessmentInstanceExam.ejs b/pages/studentAssessmentInstanceExam/studentAssessmentInstanceExam.ejs</span>
+<span style="font-weight:bold;">index b3435005c..9ff35c355 100644</span>
+<span style="font-weight:bold;">--- a/pages/studentAssessmentInstanceExam/studentAssessmentInstanceExam.ejs</span>
+<span style="font-weight:bold;">+++ b/pages/studentAssessmentInstanceExam/studentAssessmentInstanceExam.ejs</span>
+<span style="color:teal;">@@ -100,10 +100,10 @@</span>
+             &lt;% } else { %&gt;
+               &lt;div class=&quot;col-md-3 col-sm-6&quot;&gt;
+                 &lt;% include('../partials/pointsFormatter'); %&gt;
+<span style="color:red;">-                Total points: &lt;%= getStringFromFloat(assessment_instance.points) %&gt;/&lt;%= getStringFromFloat(assessment_instance.max_points) %&gt;</span>
+<span style="color:green;">+</span><span style="color:green;">                Total points: &lt;strong&gt;Scores Hidden&lt;/strong&gt;</span>
+               &lt;/div&gt;
+               &lt;div class=&quot;col-md-3 col-sm-6&quot;&gt;
+<span style="color:red;">-                &lt;%- include('../partials/scorebar', {score: assessment_instance.score_perc}) %&gt;</span>
+<span style="color:green;">+</span><span style="color:green;">                &lt;%- include('../partials/scorebar', {score: null}) %&gt;</span>
+               &lt;/div&gt;
+               &lt;div class=&quot;col-md-6 col-sm-12&quot;&gt;
+                   &lt;% if (assessment_instance.open) { %&gt;
+<span style="font-weight:bold;">diff --git a/pages/studentAssessments/studentAssessments.ejs b/pages/studentAssessments/studentAssessments.ejs</span>
+<span style="font-weight:bold;">index e30b26d34..7a7c43c3c 100644</span>
+<span style="font-weight:bold;">--- a/pages/studentAssessments/studentAssessments.ejs</span>
+<span style="font-weight:bold;">+++ b/pages/studentAssessments/studentAssessments.ejs</span>
+<span style="color:teal;">@@ -75,7 +75,7 @@</span>
+                 &lt;% } else { // multiple_instance_header %&gt;
+                 &lt;% if (row.assessment_instance_id) { %&gt;
+                 &lt;% if(row.show_closed_assessment_score) { %&gt;
+<span style="color:red;">-                &lt;%- include('../partials/scorebar', {score: row.assessment_instance_score_perc}) %&gt;</span>
+<span style="color:green;">+</span><span style="color:green;">                &lt;%- include('../partials/scorebar', {score: null}) %&gt;</span>
+                 &lt;% } else { %&gt;
+                 Score not shown
+                 &lt;% } %&gt;
+<span style="font-weight:bold;">diff --git a/pages/studentGradebook/studentGradebook.ejs b/pages/studentGradebook/studentGradebook.ejs</span>
+<span style="font-weight:bold;">index 0645caf73..4efb247b4 100644</span>
+<span style="font-weight:bold;">--- a/pages/studentGradebook/studentGradebook.ejs</span>
+<span style="font-weight:bold;">+++ b/pages/studentGradebook/studentGradebook.ejs</span>
+<span style="color:teal;">@@ -53,7 +53,7 @@</span>
+                 &lt;% if(!row.show_closed_assessment_score) { %&gt;
+                 Score not shown
+                 &lt;% } else { %&gt;
+<span style="color:red;">-                &lt;%- include('../partials/scorebar', {score: row.assessment_instance_score_perc}) %&gt;</span>
+<span style="color:green;">+</span><span style="color:green;">                &lt;%- include('../partials/scorebar', {score: null}) %&gt;</span>
+                 &lt;% } %&gt;
+                 &lt;% } %&gt;
+               &lt;/td&gt;
+</pre>
+</body>
+</html>

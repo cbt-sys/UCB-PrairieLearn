@@ -75,7 +75,7 @@
                 <% } else { // multiple_instance_header %>
                 <% if (row.assessment_instance_id) { %>
                 <% if(row.show_closed_assessment_score) { %>
-                <%- include('../partials/scorebar', {score: row.assessment_instance_score_perc}) %>
+                <%- include('../partials/scorebar', {score: null}) %>
                 <% } else { %>
                 Score not shown
                 <% } %>
